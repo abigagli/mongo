@@ -1,0 +1,92 @@
+{
+	"version": "2.0.0",
+	"inputs": [
+		{
+			"id": "DESTDIR",
+			"type": "promptString",
+			"description": "Install folder",
+			"default": "${env:HOME}/MONGO"
+		}
+	],
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Build mongod",
+			"command": "/usr/bin/bear",
+			"args": [
+				"-av",
+				"python3",
+				"buildscripts/scons.py",
+				"DESTDIR=${input:DESTDIR}",
+				"PREFIX=''",
+				"-j24",
+				"install-mongod"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"type": "shell",
+			"label": "Build mongos",
+			"command": "/usr/bin/bear",
+			"args": [
+				"-av",
+				"python3",
+				"buildscripts/scons.py",
+				"DESTDIR=${input:DESTDIR}",
+				"PREFIX=''",
+				"-j24",
+				"install-mongos"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"type": "shell",
+			"label": "Build mongo",
+			"command": "/usr/bin/bear",
+			"args": [
+				"-av",
+				"python3",
+				"buildscripts/scons.py",
+				"DESTDIR=${input:DESTDIR}",
+				"PREFIX=''",
+				"-j24",
+				"install-mongo"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"type": "shell",
+			"label": "Build all",
+			"command": "/usr/bin/bear",
+			"args": [
+				"-av",
+				"python3",
+				"buildscripts/scons.py",
+				"DESTDIR=${input:DESTDIR}",
+				"PREFIX=''",
+				"-j24",
+				"install-core"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": "build",
+			"problemMatcher": []
+		}
+	]
+}

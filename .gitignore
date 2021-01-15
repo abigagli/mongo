@@ -9,6 +9,7 @@
 /perf.data
 /perf.data.old
 /massif.out.*
+.cache
 
 *~
 *.swp
@@ -159,7 +160,7 @@ CMakeLists.txt
 .xcworkspace
 
 # Visual Studio and VSCode projects
-.vscode/
+#.vscode/
 .vs/
 /x64/
 

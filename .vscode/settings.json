@@ -1,0 +1,8 @@
+{
+    "files.watcherExclude": {
+        "**/.cache/**": true,
+        "**/build/**": true,
+        "**/buildscripts/**": true,
+        "**/jstests/**": true
+    }
+}
