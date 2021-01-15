@@ -127,6 +127,7 @@ env.Library(
         'accumulator_push.cpp',
         'accumulator_std_dev.cpp',
         'accumulator_sum.cpp',
+        'custom_accumulators/bucketizer.cpp',
         ],
     LIBDEPS=[
         '$BUILD_DIR/mongo/db/exec/document_value/document_value',
