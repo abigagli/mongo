@@ -21,10 +21,12 @@ public:
         , _staticArgs(staticArgs)
     {
         _accumulatorExecutor.reset(new EXECUTOR (staticArgs));
+        _memUsageBytes = sizeof(*this) + _accumulatorExecutor->memUsageBytes();
     }
     void processInternal(const Value& input, bool merging) final
     {
-        _accumulatorExecutor->accumulate (input, merging);
+        auto const additional_used_memory = _accumulatorExecutor->accumulate (input, merging);
+        _memUsageBytes += additional_used_memory;
     }
     Value getValue(bool toBeMerged) final
     {
@@ -37,10 +39,12 @@ public:
     void reset() final
     {
         _accumulatorExecutor->resetAccumulator();
+        _memUsageBytes = sizeof(*this) + _accumulatorExecutor->memUsageBytes();
     }
     void startNewGroup(Value const& input) 
     {
         _accumulatorExecutor->startNewGroup(input);
+        _memUsageBytes = sizeof(*this) + _accumulatorExecutor->memUsageBytes();
     }
 
     AccumulatorDocumentsNeeded documentsNeeded() const final {
